@@ -1,7 +1,7 @@
-import React from 'react'; //Basic framework
-import { SafeAreaView, StatusBar, AppRegistry, FlatList } from 'react-native'; //Basic framework
-import { NavigationContainer } from '@react-navigation/native'; //Navigation between application pages
-import { createNativeStackNavigator } from '@react-navigation/native-stack'; //Also used for page navigation
+import React from 'react';
+import { SafeAreaView, StatusBar, AppRegistry, FlatList } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
     Div,
     Text,
@@ -12,8 +12,8 @@ import {
     Input,
     Dropdown,
     ThemeProvider,
-} from 'react-native-magnus'; //All UI elements
-import Constants from 'expo-constants'; //Unsure if we need this ATM
+} from 'react-native-magnus';
+import Constants from 'expo-constants';
 
 /* 
  * Code by Nicholas Boettcher 
@@ -56,15 +56,8 @@ function HomeScreen({ navigation }) {
                             source={require('./assets/temp-logo.png')} />
                     </Div>
                     {/* Title Text */}
-                    <Text
-                        mt="2xl"
-                        mx="xl"
-                        w="50%"
-                        fontWeight="bold"
-                        fontSize="5xl"
-                        textAlign="center"
-                        alignSelf="center">
-                        Color Blind Assistance (TEST 6)
+                    <Text mt="2xl" mx="xl" w="50%" fontWeight="bold" fontSize="5xl" textAlign="center" alignSelf="center">
+                        Colorblind Assistance (TEST 4)
                     </Text>
                     {/* Top Button Row 
                      * - Contains the Camera Button and Analyzer Button 
@@ -91,7 +84,7 @@ function HomeScreen({ navigation }) {
                                     fontSize="6xl"
                                     fontFamily="FontAwesome"
                                     name="camera-retro"
-                                    color="#FFFFFF"
+                                    color="green100"
                                 />
                             }
                             onPress={() => navigation.navigate('Camera', {})}>
@@ -112,7 +105,7 @@ function HomeScreen({ navigation }) {
                                     fontSize="6xl"
                                     fontFamily="FontAwesome"
                                     name="bar-chart"
-                                    color="#FFFFFF"
+                                    color="green100"
                                 />
                             }
                             onPress={() => navigation.navigate('Analyzer', {})}>
@@ -143,7 +136,7 @@ function HomeScreen({ navigation }) {
                                     fontSize="6xl"
                                     fontFamily="FontAwesome"
                                     name="picture-o"
-                                    color="#FFFFFF"
+                                    color="green100"
                                 />
                             }
                             onPress={() => navigation.navigate('Gallery', {})}>
@@ -164,7 +157,7 @@ function HomeScreen({ navigation }) {
                                     fontSize="6xl"
                                     fontFamily="FontAwesome"
                                     name="question"
-                                    color="#FFFFFF"
+                                    color="green100"
                                 />
                             }
                             onPress={() => navigation.navigate('Help', {})}>
@@ -179,7 +172,7 @@ function HomeScreen({ navigation }) {
                         mt="xl">
                         <Div h={1} flex={1} bg="gray200" />
                         <Text px="lg" fontSize="sm" color="gray500">
-                            Additional Information
+                            Colorblind Options
                         </Text>
                         <Div h={1} flex={1} bg="gray200" />
                     </Div>
@@ -199,8 +192,36 @@ function HomeScreen({ navigation }) {
                             borderColor="gray200"
                             bg="white"
                             color="gray900"
-                            shadow="sm">
-                            Color Blindness
+                            shadow="sm"
+                            prefix={
+                                <Image
+                                    h={20}
+                                    w={20}
+                                    mr="md"
+                                    source={require('./assets/icon.png')}
+                                />
+                            }>
+                            No Green
+                        </Button>
+                        <Button
+                            ml="md"
+                            flex={1}
+                            py="lg"
+                            rounded="circle"
+                            borderWidth={1}
+                            borderColor="gray200"
+                            bg="white"
+                            color="gray900"
+                            shadow="sm"
+                            prefix={
+                                <Image
+                                    h={20}
+                                    w={20}
+                                    mr="md"
+                                    source={require('./assets/icon.png')}
+                                />
+                            }>
+                            No Red
                         </Button>
                         <Button
                             ml="md"
@@ -212,7 +233,7 @@ function HomeScreen({ navigation }) {
                             bg="white"
                             color="gray900"
                             shadow="sm">
-                            About The App
+                            No Blue
                         </Button>
                     </Div>
                 </Div>
@@ -352,9 +373,6 @@ const analyzerTheme = {
     }
 }
 
-/* Creates the filter dropdown menu */
-const dropdownAnalyzerHelp = React.createRef();
-
 function AnalyzerScreen() {
     return (
         <ThemeProvider theme={analyzerTheme}>
@@ -363,7 +381,8 @@ function AnalyzerScreen() {
             {/* Ensures the status bar is not covered */}
             <SafeAreaView style={{ flex: 1 }}>
                 {/* Main div container */}
-                <Div flex={1} bg="#FFFFFF" rounded="sm">
+                <Div flex={1} bg="#FFFFAA" rounded="sm">
+                    <Text>It just needs to be done, not good.</Text>
                     {/* Button containers: */}
                     {/* Load Image Button */}
                     <Div
@@ -388,7 +407,7 @@ function AnalyzerScreen() {
                                     fontSize="6xl"
                                     fontFamily="FontAwesome"
                                     name="camera-retro"
-                                    color="#FFFFFF"
+                                    color="green100"
                                 />
                             }>
                             Load Image
@@ -417,10 +436,10 @@ function AnalyzerScreen() {
                                     fontSize="6xl"
                                     fontFamily="FontAwesome"
                                     name="camera-retro"
-                                    color="#FFFFFF"
+                                    color="green100"
                                 />
                             }>
-                            Color blind Pallet
+                            Colorblind Pallet
                         </Button>
                     </Div>
                     {/* Help Button */}
@@ -446,32 +465,11 @@ function AnalyzerScreen() {
                                     fontSize="6xl"
                                     fontFamily="FontAwesome"
                                     name="camera-retro"
-                                    color="#FFFFFF"
+                                    color="green100"
                                 />
-                            }
-                            onPress={() => dropdownAnalyzerHelp.current.open()}>
+                            }>
                             How To Use
                         </Button>
-                        <Dropdown
-                            ref={dropdownAnalyzerHelp}
-                            showSwipeIndicator={true}
-                            roundedTop="xl"
-                            block>
-                            <Div>
-                                <Text fontSize="3xl" borderWidth={1} rounded="lg" px="lg" py="md" textAlign="center" justifyContent="center">
-                                    <Icon name="bar-chart" fontFamily="FontAwesome" fontSize="3xl" px="lg" color="blue600" />
-                                    Analyzer
-                                </Text>
-                                <Text fontSize="xl" px="sm" py="md">
-                                    Using the <Icon name="filter" fontFamily="FontAwesome" pl="sm" color="blue600" /> Load Image button,
-                                    you can select any image to load into the analyzer.
-                                </Text>
-                                <Text fontSize="xl" px="sm" py="md">
-                                    To view information about how color blind pallets you, you can select the
-                                    <Icon name="filter" fontFamily="FontAwesome" pl="sm" color="blue600" /> Palette button.
-                                </Text>
-                            </Div>
-                        </Dropdown>
                     </Div>
                 </Div>
             </SafeAreaView>
@@ -497,7 +495,7 @@ function GalleryScreen() {
             {/* Ensures the status bar is not covered */}
             <SafeAreaView style={{ flex: 1 }}>
                 <Div flex={1} bg="gray100" rounded="sm">
-                    <Text>Gallery Page. Need to find a good library for one still</Text>
+                    <Text>It just needs to be done, not good. Gallery Page</Text>
                 </Div>
             </SafeAreaView>
         </ThemeProvider>
@@ -521,64 +519,10 @@ function HelpScreen() {
             <StatusBar barStyle="light-content" />
             {/* Ensures the status bar is not covered */}
             <SafeAreaView style={{ flex: 1 }}>
-                {/* main BG div */}
-                <Div flex={1} bg="#FFFFFF" rounded="sm">
-                    {/* App funciton overview */}
-                    <Div
-                        mx="xl"
-                        alignItems="center"
-                        justifyContent="center"
-                        bg="pink300"
-                        mt="lg">
-                        <Text fontSize="5xl">Module Explainations</Text>
-                    </Div>
-                    {/* Camera & Gallery Module */}
-                    <Div
-                        mx="xl"
-                        alignItems="center"
-                        justifyContent="center"
-                        bg="pink300"
-                        mt="lg">
-                        <Text fontSize="3xl" borderWidth={1} rounded="lg" px="lg" py="md">
-                            <Icon name="camera" fontFamily="FontAwesome" fontSize="3xl" px="lg" color="blue600" />
-                            Camera & Gallery
-                        </Text>
-                        <Text fontSize="xl" px="sm" py="sm">
-                            Capture pictures using the device's camera. All pictures will be saved to the DIRECTORY.
-                        </Text>
-                        <Text fontSize="xl" px="sm" py="sm">
-                            You can use the <Icon name="filter" fontFamily="FontAwesome" color="blue600" /> filter button to apply any
-                            color blind filter to the image.
-                        </Text>
-                        <Text fontSize="xl" px="sm" py="sm">
-                            Color blind filters can be applied in the gallyer using the
-                            <Icon name="filter" fontFamily="FontAwesome" pl="sm" color="blue600" /> filter button as well.
-                        </Text>
-                    </Div>
-                    {/* Analyzer Module */}
-                    <Div
-                        mx="xl"
-                        alignItems="center"
-                        justifyContent="center"
-                        bg="pink300"
-                        mt="lg">
-                        <Text fontSize="3xl" borderWidth={1} rounded="lg" px="lg" py="md">
-                            <Icon name="bar-chart" fontFamily="FontAwesome" fontSize="3xl" px="lg" color="blue600" />
-                            Analyzer
-                        </Text>
-                        <Text fontSize="xl" px="sm">
-                            Using the <Icon name="filter" fontFamily="FontAwesome" pl="sm" color="blue600" /> Load Image button,
-                            you can select any image to load into the analyzer.
-                        </Text>
-                        <Text fontSize="xl" px="sm">
-                            To view information about how color blind pallets you, you can select the
-                            <Icon name="filter" fontFamily="FontAwesome" pl="sm" color="blue600" /> Palette button.
-                        </Text>
-                        <Text fontSize="xl" px="sm">
-                            Pressing the <Icon name="question" fontFamily="FontAwesome" color="blue600" /> Help button will
-                            display this information about how the anaylzer works.
-                        </Text>
-                    </Div>
+                <Div flex={1} bg="#FFFFAA" rounded="sm">
+                    <Text>It just needs to be done, not good. Help Page</Text>
+                    <Text>Aboutx% of the population is colorblind, x% of men and x% fo women</Text>
+                    <Text>Types of colorblindness: Deuteranopia, Protanopia, Tritanopia, Monochromatism</Text>
                 </Div>
             </SafeAreaView>
         </ThemeProvider>
